@@ -35,7 +35,7 @@ Para la instalación de `Rspec` y el resto de gemas es necesario correr ciertos 
 
 > rails generate rspec:install
 
-Este comando crea la carpeta `spec/` en la raiz del proyecto, dentro de esta siguiendo las convenciones de la gema se deben crear las carpetas `models/`,`controllers/`,`factories/`*,`features/` para realizar las respectivas pruebas.
+Este comando crea la carpeta `spec/` en la raiz del proyecto, dentro de esta siguiendo las convenciones de la gema se deben crear las carpetas `models/`,`controllers/`,`factories/`,`features/` para realizar las respectivas pruebas.
 
 Para configurar la integración de estas gemas en el archivo `spec/rails_helper.rb` se deben colocar las siguientes lineas de codigo
 
@@ -53,6 +53,13 @@ RSpec.configure do |config|
   .
   # Para integración con FactoryBot
   config.include FactoryBot::Syntax::Methods
+  .
+  .
+  # Para no llenar de basura la base de datos de prueba(database-cleaner)
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
 end
 
 Shoulda::Matchers.configure do |config|
