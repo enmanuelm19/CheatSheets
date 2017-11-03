@@ -31,3 +31,27 @@ Este comando se usa en el caso que trabajes con un proyecto que ya tenga configu
 > git clone https://github.com/usuario/repositorio.git
 
 Este comando descargara el codigo que se encuentre en el repositorio remoto y la estructura del proyecto en tu maquina local, descarga todas las ramas con su historia y contenido.
+
+### Git flow :sunglasses:
+
+Gitflow es basicamente un patron o una metodologia que existe para llevar las versiones de tu proyecto de manera facil de entender y facil de escalar. Una pequeña explicación de como manejar tus ramas de manera responsable.
+
+![gitflow](https://i.imgur.com/5jP67mK.png)
+
+En la imagen se aprecian 4 ramas, `master`,`develop`,`featureAmarillo`,`featureAzul`, daremos un ejemplo practico para demostrar como se organizan las ramas y la historia de **Git**.
+
+Vemos la primera rama `master`, usualmente a esta rama se le deja la responsabilidad de ser la version estable y probada de nuestro codigo, con esta rama se deberia tener sumo cuidado en cambiar su contenido.
+
+Observamos la rama `develop` la cual parte de la version estable de la `master`, en donde se realizan las pruebas en entornos de producción antes de desplegar una version estable.
+
+Y las ramas `featureAzul`y `featureAmarillo` son nuevas caracteristicas que tendra el proyecto.
+
+#### git add **archivo o flag**
+
+Este comando sirve para añadir los cambios hechos a un archivo o conjunto de ellos, con el flag **punto**`git add .` se agregan todos los archivos que han sufrido cambios desde el ultimo **commit**.
+
+#### git commit -m "mensaje"
+
+Este comando sirve para crear un registro en la historia de las versiones del proyecto, se coloca un mensaje descriptivo de los cambios realizados
+
+> git commit -m "Mensaje descriptivo"
