@@ -55,3 +55,43 @@ Este comando sirve para añadir los cambios hechos a un archivo o conjunto de el
 Este comando sirve para crear un registro en la historia de las versiones del proyecto, se coloca un mensaje descriptivo de los cambios realizados
 
 > git commit -m "Mensaje descriptivo"
+
+#### git status
+
+Este comando sirve para ver los archivos que han sufrido cambios desde el ultimo commit, usualmente aparecen en color rojo los archivos que no han sido añadidos al stage, y en verde los que si con el comando `git add`
+
+#### git checkout **flag** **rama**
+
+Este comando tiene varios propositos, el principal es navegar entre ramas o crearlas, tambien tiene la función de eliminar los cambios hechos siempre y cuando no hayan sido agregados al stage.
+
+Para cambiar entre ramas solo es necesario realiza el siguiente comando:
+
+> git checkout nombre-rama
+
+Para crear una rama escribir el siguiente comando:
+
+> git checkout -b nombre-rama
+
+Para eliminar los cambios que no han sido agregados:
+
+> git checkout /ruta/al/archivo   |  git checkout .
+
+#### git push **remoto** **rama**
+
+Este comando tiene como finalidad subir los cambios a los que se les ha hecho commit a tu repositorio remoto, que suele ser `origin` el nombre que se le suele dar, recuerda que puedes tener mas de un repositorio remoto por proyecto.
+
+> git push origin nombre-rama
+
+#### git pull **remoto** **rama**
+
+Este comando sirve para traer los cambios que existen en el repositorio remoto que no se posee en tu local.
+
+> git pull origin nombre-rama
+
+#### git merge **rama**
+
+Este comando sirve para unir los cambios entre dos ramas, por ejemplo, cuando existe codigo en uno o varios archivos que necesitas en el desarrollo de un feature. Posicionas tu workspace en la rama que necesites con `git checkout nombre-rama` y colocas el comando indicando la rama de la cual quieres sacar el codigo.
+
+> git merge nombre-rama-a-unir
+
+Esto realiza un commit automatico añadiendo los cambios de la **nombre-rama-a-unir** a tu rama **nombre-rama**.
