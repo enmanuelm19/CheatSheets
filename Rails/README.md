@@ -8,4 +8,5 @@ Esta sección tratara sobre comandos utiles y elementos del codebase del framewo
 * ActiveRecord
 * ActionCable
 * ActionController
-* [TestSuit](https://github.com/enmanuelm19/CheatSheets/blob/master/Rails/test_suite.md)
+* [TestSuit](https://github.com/enmanuelm19/CheatSheets/blob/master/Rails/Gems/rspec-factorybot-shoulda/test_suite.md)
+* Tutos
