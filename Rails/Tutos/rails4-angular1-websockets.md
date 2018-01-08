@@ -84,6 +84,25 @@ Ya con estas configuraciones podemos hacer uso de este protocolo dentro de nuest
 })();
 ```
 
+Para hacer uso de este en nuestro aplicativo en angular solo hace falta llamarlo y utilizar el callback method propio de websocket *onmessage*.
+
+```Javascript
+(function () {
+'use strict';
+
+angular.module('BlurAdmin.theme.components')
+    .controller('MsgCenterCtrl', ['$scope', '$sce', 'Notification', MsgCenterCtrl]);
+
+function MsgCenterCtrl($scope, $sce, Notification) {
+
+  Notification.ws.onmessage = function (message) {
+    var data = JSON.parse(message.data);
+  }
+  
+}
+})();
+```
+
 Esto abre la conexión desde el cliente, para enviar data desde el servidor cree un metodo en `helpers/application_helper.rb`
 
 ```Ruby
