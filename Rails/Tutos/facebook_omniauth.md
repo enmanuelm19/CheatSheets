@@ -9,3 +9,56 @@
 > 'rails s -b 'ssl://localhost:3000?key=/direccion/a/localhost.key&cert=/direccion/a/localhost.crt' '
 > colocar https://localhost/ dentro del dominio de facebook y https://localhost:3000/users/auth/facebook/callback en la URI
 > de redireccionamiento Oauth validos.
+
+
+### Hacer mock para probar con rspec y cabypara
+```ruby
+module SessionHelpers
+  def sign_in_with(email, password)
+    visit new_user_session_path
+    fill_in 'user[email]', with: email
+    fill_in 'user[password]',	with: password
+    click_button 'Iniciar Sesión'
+  end
+
+  def sign_in_with_facebook(user)
+    opts = {
+      'provider': 'facebook',
+      'uid': '999999999',
+      'info': {
+        'email': user.email, 
+        'name': user.name
+      },
+      'credentials': {
+        'token': 'random',
+        'expires_at': 1529779526,
+        'expires': true
+      },
+      'extra': {
+        'raw_info': {
+          'name': user.name,
+          'email': user.email,
+          'id': '123123'
+          }
+        }
+    }
+    visit new_user_session_path
+    set_omniauth(opts)
+    click_link_or_button 'log_in_facebook'
+  end
+
+  def set_omniauth(opts = {})
+    params = JSON.parse(opts.to_json, object_class: OpenStruct)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:facebook] = params
+  end
+
+  def set_invalid_omniauth(opts = {})
+    credentials = { :provider => :facebook,
+                    :invalid  => :invalid_crendentials
+                   }.merge(opts)
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[credentials[:provider]] = credentials[:invalid]
+  end 
+end
+```
